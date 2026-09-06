@@ -10,6 +10,7 @@ import content from './content.json';
 import editorial from './editorial.json';
 import study from './chapter-study.json';
 import { ReadingConnections, type OpenLiterature } from './literature';
+import { HamletReadingNote } from './hamlet';
 
 type SourceParagraph = {index:number;style:string;text:string};
 function OriginalParagraph({paragraph, referenced, guided}:{paragraph:SourceParagraph;referenced:boolean;guided:boolean}) {
@@ -61,6 +62,7 @@ export function Reader({chapter, paragraph, read, practice, literature}: {chapte
     {guided&&<header className="reading-group-heading"><span className="reading-group-number">{String(i+1).padStart(2,'0')}</span><div><p className="eyebrow">{g.kicker}</p><h2>{g.title}</h2></div><p className="reading-group-intro">{g.intro}</p></header>}
     {guided&&<StudyFigure id={g.id}/>}
     <div className="original-text">{g.paragraphs.map(id=><OriginalParagraph key={id} paragraph={sourceById.get(id)!} referenced={paragraph===id} guided={guided}/>)}</div>
+    {guided&&<HamletReadingNote paragraphIds={g.paragraphs} open={literature}/>}
     {guided&&<StudyLens group={g} open={i===0}/>}
    </section>)}
    {guided&&<ReadingConnections chapter={chapter} open={literature}/>}

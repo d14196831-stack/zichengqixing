@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import './design-v2.css';
 import './literature.css';
+import './hamlet.css';
 export const metadata: Metadata = {
   title: '自成其形 · 交互读本',
   icons: { icon: './favicon.svg' },
